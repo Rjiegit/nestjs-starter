@@ -1,4 +1,9 @@
 import { Module } from '@nestjs/common';
+import { SharedModule } from '../shared/shared.module';
 
-@Module({})
-export class FeatureModule {}
+@Module({
+    imports: [
+        SharedModule,
+    ],
+})
+export class FeatureModule { }

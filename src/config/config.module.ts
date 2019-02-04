@@ -1,6 +1,7 @@
-import { Module, DynamicModule } from '@nestjs/common';
+import { Module, DynamicModule, Global } from '@nestjs/common';
 import { ConfigService } from './config.service';
 
+@Global()
 @Module({})
 export class ConfigModule {
   static forRoot(filePath?: string): DynamicModule {
