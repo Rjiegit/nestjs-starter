@@ -1,7 +1,20 @@
-import { Module } from '@nestjs/common';
+import { Module, DynamicModule } from '@nestjs/common';
 import { ConfigService } from './config.service';
 
-@Module({
-  providers: [ConfigService]
-})
-export class ConfigModule {}
+@Module({})
+export class ConfigModule {
+  static forRoot(filePath?: string): DynamicModule {
+    return {
+      module: ConfigModule,
+      providers: [
+        {
+          provide: ConfigService,
+          useValue: new ConfigService(filePath || `.env.${process.env.NODE_ENV || 'development'}`),
+        },
+      ],
+      exports: [
+        ConfigService,
+      ],
+    };
+  }
+}

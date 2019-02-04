@@ -1,4 +1,9 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '../config/config.module';
 
-@Module({})
-export class CoreModule {}
+@Module({
+    imports: [
+        ConfigModule.forRoot(),
+    ],
+})
+export class CoreModule { }
